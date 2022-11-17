@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Paper, Typography,Box,TextField, Button} from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
@@ -41,20 +41,26 @@ BoxInfo:{
 const LoginPage = () => {
     const classes=useStyles();
     const navigate=useNavigate();
+    const [loginData,setLogInData]=useState({email:"",password:""});
+    
+    const logInChangeHandler = (e) => {
+        const { name, value } = e.target;
+        setLogInData((prevData) => ({ ...prevData, [name]: value }));
+      };
   return (
    <Paper elevation={5}  className={classes.loginContainer}>
     <Typography variant="h6">LOGIN</Typography>
 
     <Box component="div" className={classes.FieldBox}>
      <Typography variant="body2" align='left'>Email</Typography>
-     <TextField id="outlined-basic"  variant="outlined"  placeholder='email'required  size="small"/>
+     <TextField id="outlined-basic"  variant="outlined"  placeholder='email'required  size="small" name="email" onChange={logInChangeHandler}/>
     </Box>
 
     <Box component="div" className={classes.FieldBox}>
      <Typography variant="body2" align='left'>Password</Typography>
-     <TextField id="outlined-basic" variant="outlined" required placeholder='Password'  size="small"/>
+     <TextField id="outlined-basic" variant="outlined" required placeholder='Password' type="password"  size="small" name="password" onChange={logInChangeHandler}/>
     </Box>
-    <Button variant="contained" className={classes.ButtonStyled}>LOG IN</Button>
+    <Button variant="contained" className={classes.ButtonStyled} onClick={()=>console.log(loginData)}>LOG IN</Button>
 
     <Box component="div" className={classes.BoxInfo}>
      <Typography variant="body2" align='left'>New User?</Typography>

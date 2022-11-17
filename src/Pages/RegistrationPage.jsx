@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Paper, Typography,Box,TextField, Button} from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
@@ -49,30 +49,36 @@ BoxInfo:{
 const RegistrationPage = () => {
     const classes=useStyles();
     const navigate=useNavigate();
+    const [signupData,setSignupData]=useState({firstname:"",lastname:"",email:"",password:""});
+
+    const signupChangeHandler = (e) => {
+        const { name, value } = e.target;
+        setSignupData((prevData) => ({ ...prevData, [name]: value }));
+      };
     return (
      <Paper elevation={5}  className={classes.loginContainer}>
       <Typography variant="h6">SIGN UP</Typography>
 
       <Box component="div" className={classes.FieldBox}>
        <Typography variant="body2" align='left'>First Name</Typography>
-       <TextField id="outlined-basic"  variant="outlined" placeholder='First Name'required  size="small"/>
+       <TextField id="outlined-basic"  variant="outlined" placeholder='First Name'required  size="small" name="firstname" onChange={signupChangeHandler}/>
       </Box>
 
       <Box component="div" className={classes.FieldBox}>
        <Typography variant="body2" align='left'>Last Name</Typography>
-       <TextField id="outlined-basic" variant="outlined" placeholder='Last Name' required  size="small"/>
+       <TextField id="outlined-basic" variant="outlined" placeholder='Last Name' required  size="small" name="lastname" onChange={signupChangeHandler}/>
       </Box>
   
       <Box component="div" className={classes.FieldBox}>
        <Typography variant="body2" align='left'>Email</Typography>
-       <TextField id="outlined-basic"  variant="outlined" placeholder='Email' required  size="small"/>
+       <TextField id="outlined-basic"  variant="outlined" placeholder='Email' required  size="small" name="email" onChange={signupChangeHandler}/>
       </Box>
   
       <Box component="div" className={classes.FieldBox}>
        <Typography variant="body2" align='left'>Password</Typography>
-       <TextField id="outlined-basic" variant="outlined" placeholder='Password' required  size="small"/>
+       <TextField id="outlined-basic" variant="outlined" placeholder='Password' type="password" required  size="small" name="password" onChange={signupChangeHandler}/>
       </Box>
-      <Button variant="contained" className={classes.ButtonStyled}>SIGNUP</Button>
+      <Button variant="contained" className={classes.ButtonStyled} onClick={()=>console.log(signupData)}>SIGNUP</Button>
 
 
     <Box component="div" className={classes.BoxInfo}>
