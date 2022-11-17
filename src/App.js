@@ -1,23 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './Components/Header/Header';
+import HeroSection from './Components/HeroSection/HeroSection';
+import { createTheme, ThemeProvider } from '@mui/material';
+import {Route,Routes} from "react-router-dom";
+import LoginPage from './Pages/LoginPage';
+import RegistrationPage from './Pages/RegistrationPage';
 
 function App() {
+  const lightTheme = createTheme ({
+    breakpoints: {
+      xsm:"0px",
+      sm:"600px",
+      md:"900px"
+    },
+  });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <ThemeProvider theme={lightTheme}>
+    <Header/>
+    <Routes>
+            <Route path="/" element={<LoginPage/>} />           
+           <Route path="/registration" element={<RegistrationPage/>}/>
+    </Routes>
+    </ThemeProvider>
     </div>
   );
 }
