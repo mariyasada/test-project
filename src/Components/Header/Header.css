@@ -39,17 +39,19 @@
     color:yellow;
 }
 
-@media only screen and (min-width: 320px) and (max-width: 780px){
-    .Header_container{
+@media only screen and (min-width: 220px) and (max-width: 900px){
+    .Header_container,
+    .Header_container_dark{
         width: 100%;
         padding: 0.7rem;
     }
-    .Header_points{
+    
+    .Header_points,
+    .Header_points_dark{
         margin-right: auto;
         gap:1rem;
-        color:white;
         font-weight: bold;
-        font-size: medium;
+        font-size: 11px;
     }
     .Theme_icon{
         margin-left: auto;
