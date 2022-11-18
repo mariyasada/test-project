@@ -13,7 +13,6 @@ loginContainer:{
     height:"28rem"
 },
  margin:"3rem auto",
- backgroundColor:"red",
  width:"20rem",
  height:"35rem",
  padding:"2rem",
@@ -40,7 +39,7 @@ BoxInfo:{
     gap:"2rem",
     alignItems:"center",
     justifyContent:"center",
-    marginTop:"-15px"
+   
 }
   
 }))
@@ -87,7 +86,7 @@ const RegistrationPage = () => {
       <Button variant="contained" className={classes.ButtonStyled} onClick={clickHandler}>SIGNUP</Button>
 
 
-    <Box component="div" className={classes.BoxInfo} sx={{marginTop :breakpoints && "0.8rem"}}>
+    <Box component="div" className={classes.BoxInfo} sx={{marginTop :breakpoints ? "0.2rem":"-15px"}}>
      <Typography variant="body2" align='left'>Already Registered?</Typography>
      <Typography variant="body2" align="right"sx={{textDecoration:"underline" ,color:"#0ea5e9",cursor:"pointer"}} onClick={()=>navigate("/")}>Log In Here</Typography>
     </Box>
