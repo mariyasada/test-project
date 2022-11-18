@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Paper, Typography,Box,TextField, Button} from "@mui/material";
+import {Paper, Typography,Box,TextField, Button, useTheme, useMediaQuery} from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
  
@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 const useStyles=makeStyles(theme=>({
 loginContainer:{
  margin:"3rem auto",
- backgroundColor:"white",
  width:"20rem",
  height:"20rem",
  padding:"2rem",
@@ -16,6 +15,15 @@ loginContainer:{
  alignItems:'flex-start',
  justifyContent:"flex-start",
  gap:"2rem"
+},
+loginContainerSmSize:{
+ margin:"2rem auto",
+ width:"15rem",
+ height:"18rem",
+ padding:"1rem",
+ alignItems:"flex-start",
+ gap:"2rem"
+ 
 },
 FieldBox:{
     width:"100%",
@@ -33,7 +41,7 @@ BoxInfo:{
     gap:"2rem",
     alignItems:"center",
     justifyContent:"center",
-    marginTop:"-15px"
+    
 }
     
 }))
@@ -41,28 +49,36 @@ BoxInfo:{
 const LoginPage = () => {
     const classes=useStyles();
     const navigate=useNavigate();
+    const theme=useTheme();
+    const breakpoints=useMediaQuery(theme.breakpoints.down("sm"));
     const [loginData,setLogInData]=useState({email:"",password:""});
     
     const logInChangeHandler = (e) => {
         const { name, value } = e.target;
         setLogInData((prevData) => ({ ...prevData, [name]: value }));
       };
+
+      const clickHandler=()=>{
+        console.log(loginData);
+        setLogInData({email:"",password:""})
+      }
+      
   return (
-   <Paper elevation={5}  className={classes.loginContainer}>
-    <Typography variant="h6">LOGIN</Typography>
+   <Paper elevation={5}  className={breakpoints? classes.loginContainerSmSize :classes.loginContainer} >
+    <Typography variant="h6" align='left' sx={{fontSize:breakpoints && "15px"}}>LOGIN</Typography>
 
-    <Box component="div" className={classes.FieldBox}>
+    <Box component="div" className={classes.FieldBox} sx={{marginTop:breakpoints && "0.8rem"}}>
      <Typography variant="body2" align='left'>Email</Typography>
-     <TextField id="outlined-basic"  variant="outlined"  placeholder='email'required  size="small" name="email" onChange={logInChangeHandler}/>
+     <TextField id="outlined-basic"  variant="outlined"  placeholder='email'required  size="small" name="email" onChange={logInChangeHandler} value={loginData.email}/>
     </Box>
 
-    <Box component="div" className={classes.FieldBox}>
+    <Box component="div" className={classes.FieldBox} sx={{marginTop:breakpoints && "0.8rem"}}>
      <Typography variant="body2" align='left'>Password</Typography>
-     <TextField id="outlined-basic" variant="outlined" required placeholder='Password' type="password"  size="small" name="password" onChange={logInChangeHandler}/>
+     <TextField id="outlined-basic" variant="outlined" required placeholder='Password' type="password"  size="small" name="password" onChange={logInChangeHandler} value={loginData.password}/>
     </Box>
-    <Button variant="contained" className={classes.ButtonStyled} onClick={()=>console.log(loginData)}>LOG IN</Button>
+    <Button variant="contained" className={classes.ButtonStyled} sx={{marginTop:breakpoints && "0.8rem"}}onClick={clickHandler}>LOG IN</Button>
 
-    <Box component="div" className={classes.BoxInfo}>
+    <Box component="div" className={classes.BoxInfo} sx={{marginTop:breakpoints ? "1rem" :"-1rem"}} >
      <Typography variant="body2" align='left'>New User?</Typography>
      <Typography variant="body2" align="right"sx={{textDecoration:"underline" ,color:"#0ea5e9",cursor:"pointer"}} onClick={()=>navigate("/registration")}>Register Here</Typography>
     </Box>
