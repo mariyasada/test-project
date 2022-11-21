@@ -26,4 +26,9 @@ body {
   align-items: flex-start;
   justify-content: flex-start;
 }
-
+.gap-2{
+  gap: 2rem;
+}
+.mt-2{
+  margin-top: 2rem;
+}
