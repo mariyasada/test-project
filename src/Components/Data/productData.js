@@ -1,7 +1,7 @@
 export const productData=[
     {
         id:"1",
-        productName:"Armani-sundigioia- 150ml (MEN)",
+        productName:"Armani-sundigioia",
         brand:"Armani",        
         Price:15000,        
         image:"https://mehak-store.netlify.app/assets/MEN/armanisundigioia_men.jpg",
@@ -11,7 +11,7 @@ export const productData=[
       },
       {
         id: "2",
-        productName:"Chanel-paris-1957-150ml (MEN)",
+        productName:"Chanel-paris-1957",
         brand:"Chanel",        
         Price:13000,
         image:"https://mehak-store.netlify.app/assets/MEN/chanel-paris-men.jpg",
@@ -21,7 +21,7 @@ export const productData=[
       },
       {
         id: "3",
-        productName:"Acqua-di-Gio-Essenza- 150ml (MEN)",
+        productName:"Acqua-di-Gio-Essenza",
         brand:"Armani",
         Price:1300,        
         image:"https://mehak-store.netlify.app/assets/MEN/Acqua-di-Gio-Essenza-Giorgio-Armani_men.jpg",   
@@ -31,7 +31,7 @@ export const productData=[
       },
       {
         id: "4",
-        productName:"Allure-Homme-Sport-Chanel - 100ml (MEN)",
+        productName:"Allure-Homme-Sport-Chanel",
         brand:"Chanel",
         Price:1500,
         image:"https://mehak-store.netlify.app/assets/MEN/Allure-Homme-Sport_chanel-men.jpg",
@@ -41,7 +41,7 @@ export const productData=[
       },
       {
         id: "5",
-        productName:"Armani-prive-cuir- 100ml (MEN)",
+        productName:"Armani-prive-cuir",
         brand:"Armani",
         Price:1800,
         image:"https://mehak-store.netlify.app/assets/WOMEN/Armani-Si_women.jpg",
@@ -51,7 +51,7 @@ export const productData=[
       },
       {
         id: "6",
-        productName:"Armani-Royal_Oud- 150ml (MEN)",
+        productName:"Armani-Royal-Oud",
         brand:"Armani",
         Price:3000,
         image:"https://mehak-store.netlify.app/assets/MEN/zara-nuit-men.jpg",
@@ -62,7 +62,7 @@ export const productData=[
       
       {
         id: "7",
-        productName:"Chanel-platinum-egoiste- 150ml (MEN)",
+        productName:"Chanel-platinum-egoiste",
         brand:"Chanel",
         Price:3000,
         image:"https://mehak-store.netlify.app/assets/WOMEN/ArmaniSIFioriforWomen.jpg",
@@ -72,7 +72,7 @@ export const productData=[
       },
       {
         id: "8",
-        productName:"Gucci-IntenseOud-UseMe-100ml (MEN)",
+        productName:"Gucci-IntenseOud-UseMe",
         brand:"Gucci",
         Price:3000,
         image:"https://mehak-store.netlify.app/assets/WOMEN/Estee-Lauder-Pleasures-For-Women_.jpg",  
@@ -82,7 +82,7 @@ export const productData=[
       },
       {
         id: "9",
-        productName:"Gucci-oriental-base- 150ml (MEN)",
+        productName:"Gucci-oriental-base",
         brand:"Gucci",
         Price:4000,
         image:"https://mehak-store.netlify.app/assets/WOMEN/MODERN-MUSE-ESTEE-LAUDER-women.jpg",
