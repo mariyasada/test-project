@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import {Paper, Typography,Box,TextField, Button,useTheme,useMediaQuery} from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../actions';
 
  
 
@@ -49,6 +51,7 @@ const RegistrationPage = () => {
     const theme=useTheme();
     const breakpoints=useMediaQuery(theme.breakpoints.down("sm"));
     const [signupData,setSignupData]=useState({firstname:"",lastname:"",email:"",password:""});
+    const dispatch=useDispatch();
 
     const signupChangeHandler = (e) => {
         const { name, value } = e.target;
@@ -56,8 +59,19 @@ const RegistrationPage = () => {
       };
 
       const clickHandler=()=>{
-        console.log(signupData);
-        setSignupData({firstname:"",lastname:"",email:"",password:""})
+        if(signupData.firstname === "" ||
+        signupData.lastname === "" ||
+        signupData.email === "" ||
+        signupData.password === "" )
+        {
+          console.error("please fill all the details");
+        }
+        else{
+          signUp(signupData,dispatch,navigate);
+          navigate("/");
+          setSignupData({firstname:"",lastname:"",email:"",password:""})
+        }
+       
       }
 
     return (
@@ -66,22 +80,22 @@ const RegistrationPage = () => {
 
       <Box component="div" className={classes.FieldBox}>
        <Typography variant="body2" align='left'>First Name</Typography>
-       <TextField id="outlined-basic"  variant="outlined" placeholder='First Name'required  size="small" name="firstname" onChange={signupChangeHandler} value={signupData.firstname}/>
+       <TextField id="firstname"  variant="outlined" placeholder='First Name'required  size="small" name="firstname" onChange={signupChangeHandler} value={signupData.firstname}/>
       </Box>
 
       <Box component="div" className={classes.FieldBox}>
        <Typography variant="body2" align='left'>Last Name</Typography>
-       <TextField id="outlined-basic" variant="outlined" placeholder='Last Name' required  size="small" name="lastname" onChange={signupChangeHandler} value={signupData.lastname}/>
+       <TextField id="lastname" variant="outlined" placeholder='Last Name' required  size="small" name="lastname" onChange={signupChangeHandler} value={signupData.lastname}/>
       </Box>
   
       <Box component="div" className={classes.FieldBox}>
        <Typography variant="body2" align='left'>Email</Typography>
-       <TextField id="outlined-basic"  variant="outlined" placeholder='Email' required  size="small" name="email" onChange={signupChangeHandler} value={signupData.email}/>
+       <TextField id="email"  variant="outlined" placeholder='Email' required  size="small" name="email" onChange={signupChangeHandler} value={signupData.email}/>
       </Box>
   
       <Box component="div" className={classes.FieldBox}>
        <Typography variant="body2" align='left'>Password</Typography>
-       <TextField id="outlined-basic" variant="outlined" placeholder='Password' type="password" required  size="small" name="password" onChange={signupChangeHandler} value={signupData.password}/>
+       <TextField id="password" variant="outlined" placeholder='Password' type="password" required  size="small" name="password" onChange={signupChangeHandler} value={signupData.password}/>
       </Box>
       <Button variant="contained" className={classes.ButtonStyled} onClick={clickHandler}>SIGNUP</Button>
 

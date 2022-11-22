@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {Paper, Typography,Box,TextField, Button, useTheme, useMediaQuery, FormGroup, FormControlLabel, Checkbox} from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
+import { logInHandler } from '../actions';
+import { useDispatch } from 'react-redux';
 
 
 const useStyles=makeStyles(theme=>({
@@ -56,16 +58,25 @@ const LoginPage = () => {
     const theme=useTheme();
     const breakpoints=useMediaQuery(theme.breakpoints.down("sm"));
     const [loginData,setLogInData]=useState({email:"",password:""});
-    
+    const dispatch=useDispatch();
+
     const logInChangeHandler = (e) => {
         const { name, value } = e.target;
         setLogInData((prevData) => ({ ...prevData, [name]: value }));
       };
 
       const clickHandler=()=>{
-        console.log(loginData);
-        navigate("/productlisting");
-        setLogInData({email:"",password:""})
+        if(
+        loginData.email === "" ||
+        loginData.password === "" )
+        {
+          console.error("please fill all the details");
+        }
+        else{
+          logInHandler(loginData,dispatch,navigate);
+         setLogInData({email:"",password:""})
+        }
+        
       }
 
   return (
@@ -74,12 +85,12 @@ const LoginPage = () => {
 
     <Box component="div" className={classes.FieldBox} sx={{marginTop:breakpoints && "0.8rem"}}>
      <Typography variant="body2" align='left'>Email</Typography>
-     <TextField id="outlined-basic"  variant="outlined"  placeholder='email'required  size="small" name="email" onChange={logInChangeHandler} value={loginData.email}/>
+     <TextField id="email"  variant="outlined"  placeholder='email'required  size="small" name="email" onChange={logInChangeHandler} value={loginData.email} />
     </Box>
 
     <Box component="div" className={classes.FieldBox} sx={{marginTop:breakpoints && "0.8rem"}}>
      <Typography variant="body2" align='left'>Password</Typography>
-     <TextField id="outlined-basic" variant="outlined" required placeholder='Password' type="password"  size="small" name="password" onChange={logInChangeHandler} value={loginData.password}/>
+     <TextField id="password" variant="outlined" required placeholder='Password' type="password"  size="small" name="password" onChange={logInChangeHandler} value={loginData.password}/>
     </Box>
 
     <Box component="div" className={classes.forgotPassBox} sx={{marginTop:breakpoints ?"4px": "-12px"}}>

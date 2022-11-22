@@ -2,8 +2,9 @@ import { Box, Typography, CardMedia, Button, IconButton, useTheme, useMediaQuery
 import { makeStyles } from '@mui/styles'
 import React, { useEffect, useState } from 'react'
 import { FaHeart } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { productData } from '../../Components/Data/productData'
+
 
 
 
@@ -42,6 +43,7 @@ const useStyles=makeStyles(theme=>({
 }))
 
 const ProductDetailPage = () => {
+    const productData=useSelector(state=>state.authReducer.products);
     const classes=useStyles();
     const { productId } = useParams();
     const theme=useTheme();
